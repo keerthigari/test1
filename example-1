@@ -1,0 +1,14 @@
+import requests
+from urllib.parse import urlparse
+
+def fetch_integers_from_url(url):
+    try:
+        response = requests.get(url, timeout=0.5)
+        if response.status_code == 200:
+            integers = [int(num) for num in response.text.split() if num.isdigit()]
+            return integers
+        else:
+            print(f"Failed to fetch integers from {url}. Status code: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data from {url}: {str(e)}")
+    return []
