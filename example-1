@@ -12,3 +12,10 @@ def fetch_integers_from_url(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from {url}: {str(e)}")
     return []
+ def merge_and_sort_integers(url_list):
+    merged_integers = []
+    for url in url_list:
+        integers = fetch_integers_from_url(url)
+        merged_integers.extend(integers)
+    merged_integers = sorted(list(set(merged_integers)))
+    return merged_integers
