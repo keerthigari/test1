@@ -19,3 +19,14 @@ def fetch_integers_from_url(url):
         merged_integers.extend(integers)
     merged_integers = sorted(list(set(merged_integers)))
     return merged_integers
+ def parse_urls_from_input(input_string):
+    urls=[]
+    parts = input_string.split("url=")
+    for part in parts[1:]:
+        url = part.split("&")[0]
+        parsed_url = urlparse(url)
+        if parsed_url.scheme and parsed_url.netloc:
+            urls.append(url)
+        else:
+            print(f"Invalid URL: {url}")
+    return urls
